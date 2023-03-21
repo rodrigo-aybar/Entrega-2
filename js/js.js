@@ -16,49 +16,34 @@ const pizzas = [
     pizza = new Pizza (6, 'Chorizos', 1300, ['queso', 'chorizos']),
 ]
 
-// 🔥 Crear una iteración del array que imprima en consola 🔥
-// 🔥 A) Las pizzas que tengan un id impar.
+// 👉 Crear un archivo HTML que contenga un h2, un h4, un input number y un botón. 
+// 👉 El desafío será, al tocar el botón, capturar el valor ingresado en el input.
+// 👉 Renderizar en el h2 el nombre y en el h4 el precio de la pizza cuyo id coincida con el numero ingresado en el input. 
 
-//const impar = (e) => {
-//    const idImpar = pizzas.filter((e) => e.id % 2 == !0);
-//    console.log('Las pizas con ID Impar son:');
-//    idImpar.forEach((e) => {console.log(e.nombre)})
-//}
+const tuPizza = document.getElementById('pizzaPrecio')
+const input = document.getElementById('input')
+const btn = document.getElementById('btn')
 
-//impar(pizzas);
+// Funcion de busqueda (Pizza)
+const busquedaPizza = (valor) => pizzas.find(e => e.id === valor);
 
-// 🔥 B) ¿Hay alguna pizza que valga menos de $1000?
+// Funcion de Busqueda (Submit)
+const busquedaSubmit = () => {
+    const valorInput = input.value;
+    const pizzaSeleccionada = busquedaPizza(valorInput);
+    //renderPizza(pizzaSeleccionada);
+    console.log(pizzaSeleccionada);
+};
 
-//const menorA = (e) => {
-//    const menorA = e.filter((e) => e.precio < 1000);
-//    console.log('Las pizzas con un precio menor a $1000 son:');
-//    menorA.forEach(e => {console.log(e.nombre)});
-//}
+// Render
+const renderPizza = (e) => {
+    tuPizza.innerHTML = `
+    <h2>Pizza: ${e.nombre}</h2>
+    <h3>Precio: ${e.precio}</h3>
+    `
+};
 
-//menorA(pizzas);
-
-// 🔥 C) El nombre de cada pizza con su respectivo precio.
-
-//const nombreYPrecio = (e) => {
-//    const x = pizzas.map(e => {
-//        return {
-//            nombre: e.nombre,
-//            precio: e.precio,
-//        }
-//    });
-//    x.forEach(e => {console.log(`La Pizza ${e.nombre} tiene un predio de $${e.precio}`)})
-//}
-
-//nombreYPrecio(pizzas);
-
-// 🔥 D) Todos los ingredientes de cada pizza
-
-//pizzas.forEach(e => {
-//    console.log(`La Pizza ${e.nombre} tiene los siguientes ingredientes:`);
-//
-//    e.ingredientes.forEach((e)=>{
-//        console.log(`_${e}`)
-//    })
-//});
-
-// 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+const init = () => {
+    btn.addEventListener('click', busquedaSubmit);
+};
+init();
